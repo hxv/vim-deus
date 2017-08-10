@@ -86,53 +86,53 @@ let s:is_dark=(&background == 'dark')
 let s:ds = {}
 
 " fill it with absolute colors
-let s:ds.dark0_hard  = ['#2C313A', 234]     " 29-32-33
-let s:ds.dark0       = ['#2C323B', 235]     " 40-40-40
-let s:ds.dark0_soft  = ['#28282f', 236]     " 50-48-47
-let s:ds.dark1       = ['#3c3836', 237]     " 60-56-54
-let s:ds.dark2       = ['#2C313A', 239]     " 80-73-69
-let s:ds.dark3       = ['#665c54', 241]     " 102-92-84
-let s:ds.dark4       = ['#7c6f64', 243]     " 124-111-100
-let s:ds.dark4_256   = ['#7c6f64', 243]     " 124-111-100
+let s:ds.dark0_hard  = ['#1c1c1c', 234]     " 29-32-33
+let s:ds.dark0       = ['#262626', 235]     " 40-40-40
+let s:ds.dark0_soft  = ['#303030', 236]     " 50-48-47
+let s:ds.dark1       = ['#3a3a3a', 237]     " 60-56-54
+let s:ds.dark2       = ['#4e4e4e', 239]     " 80-73-69
+let s:ds.dark3       = ['#626262', 241]     " 102-92-84
+let s:ds.dark4       = ['#767676', 243]     " 124-111-100
+let s:ds.dark4_256   = ['#767676', 243]     " 124-111-100
 
-let s:ds.gray_245    = ['#928374', 245]     " 146-131-116
-let s:ds.gray_244    = ['#928374', 244]     " 146-131-116
+let s:ds.gray_245    = ['#8a8a8a', 245]     " 146-131-116
+let s:ds.gray_244    = ['#808080', 244]     " 146-131-116
 
-let s:ds.light0_hard = ['#d3d3d3', 230]     " 249-245-215
-let s:ds.light0      = ['#d2d2d2', 229]     " 253-244-193
-let s:ds.light0_soft = ['#d4d4d4', 228]     " 242-229-188
+let s:ds.light0_hard = ['#ffffd7', 230]     " 249-245-215
+let s:ds.light0      = ['#ffffaf', 229]     " 253-244-193
+let s:ds.light0_soft = ['#ffff87', 228]     " 242-229-188
 "let s:ds.light0_hard  = ['#2C313A', 234]     " 29-32-33
 "let s:ds.light0       = ['#2C323B', 235]     " 40-40-40
 "let s:ds.light0_soft  = ['#28282f', 236]     " 50-48-47
-let s:ds.light1      = ['#ebdbb2', 223]     " 235-219-178
-let s:ds.light2      = ['#d5c4a1', 250]     " 213-196-161
-let s:ds.light3      = ['#bdae93', 248]     " 189-174-147
-let s:ds.light4      = ['#a89984', 246]     " 168-153-132
-let s:ds.light4_256  = ['#a89984', 246]     " 168-153-132
+let s:ds.light1      = ['#ffd7af', 223]     " 235-219-178
+let s:ds.light2      = ['#bcbcbc', 250]     " 213-196-161
+let s:ds.light3      = ['#a8a8a8', 248]     " 189-174-147
+let s:ds.light4      = ['#949494', 246]     " 168-153-132
+let s:ds.light4_256  = ['#949494', 246]     " 168-153-132
 
-let s:ds.bright_red     = ['#fb4934', 167]     " 251-73-52
-let s:ds.bright_green   = ['#98C379', 142]     " 184-187-38
-let s:ds.bright_yellow  = ['#fabd2f', 214]     " 250-189-47
-let s:ds.bright_blue    = ['#83a598', 109]     " 131-165-152
-let s:ds.bright_purple  = ['#C678DD', 175]     " 211-134-155
-let s:ds.bright_aqua    = ['#8ec07c', 108]     " 142-192-124
-let s:ds.bright_orange  = ['#fe8019', 208]     " 254-128-25
+let s:ds.bright_red     = ['#d75f5f', 167]     " 251-73-52
+let s:ds.bright_green   = ['#afaf00', 142]     " 184-187-38
+let s:ds.bright_yellow  = ['#ffaf00', 214]     " 250-189-47
+let s:ds.bright_blue    = ['#87afaf', 109]     " 131-165-152
+let s:ds.bright_purple  = ['#d787af', 175]     " 211-134-155
+let s:ds.bright_aqua    = ['#87af87', 108]     " 142-192-124
+let s:ds.bright_orange  = ['#ff8700', 208]     " 254-128-25
 
-let s:ds.neutral_red    = ['#cc241d', 124]     " 204-36-29
-let s:ds.neutral_green  = ['#98971a', 106]     " 152-151-26
-let s:ds.neutral_yellow = ['#d79921', 172]     " 215-153-33
-let s:ds.neutral_blue   = ['#458588', 66]      " 69-133-136
-let s:ds.neutral_purple = ['#b16286', 132]     " 177-98-134
-let s:ds.neutral_aqua   = ['#689d6a', 72]      " 104-157-106
-let s:ds.neutral_orange = ['#d65d0e', 166]     " 214-93-14
+let s:ds.neutral_red    = ['#af0000', 124]     " 204-36-29
+let s:ds.neutral_green  = ['#87af00', 106]     " 152-151-26
+let s:ds.neutral_yellow = ['#d78700', 172]     " 215-153-33
+let s:ds.neutral_blue   = ['#5f8787', 66]      " 69-133-136
+let s:ds.neutral_purple = ['#af5f87', 132]     " 177-98-134
+let s:ds.neutral_aqua   = ['#5faf87', 72]      " 104-157-106
+let s:ds.neutral_orange = ['#d75f00', 166]     " 214-93-14
 
-let s:ds.faded_red      = ['#9d0006', 88]      " 157-0-6
-let s:ds.faded_green    = ['#79740e', 100]     " 121-116-14
-let s:ds.faded_yellow   = ['#b57614', 136]     " 181-118-20
-let s:ds.faded_blue     = ['#076678', 24]      " 7-102-120
-let s:ds.faded_purple   = ['#8f3f71', 96]      " 143-63-113
-let s:ds.faded_aqua     = ['#427b58', 66]      " 66-123-88
-let s:ds.faded_orange   = ['#af3a03', 130]     " 175-58-3
+let s:ds.faded_red      = ['#870000', 88]      " 157-0-6
+let s:ds.faded_green    = ['#878700', 100]     " 121-116-14
+let s:ds.faded_yellow   = ['#af8700', 136]     " 181-118-20
+let s:ds.faded_blue     = ['#005f87', 24]      " 7-102-120
+let s:ds.faded_purple   = ['#875f87', 96]      " 143-63-113
+let s:ds.faded_aqua     = ['#5f8787', 66]      " 66-123-88
+let s:ds.faded_orange   = ['#af5f00', 130]     " 175-58-3
 " }}}
 " Setup Emphasis: {{{
 
@@ -697,11 +697,11 @@ if !exists('g:rbpt_colorpairs')
   let g:rbpt_colorpairs =
     \ [
       \ ['blue', '#458588'], ['magenta', '#b16286'],
-      \ ['red',  '#cc241d'], ['166',     '#d65d0e']
+      \ ['red',  '#cc241d'], ['166',     '#d75f00']
     \ ]
 endif
 
-let g:rainbow_guifgs = [ '#d65d0e', '#cc241d', '#b16286', '#458588' ]
+let g:rainbow_guifgs = [ '#d75f00', '#cc241d', '#b16286', '#458588' ]
 let g:rainbow_ctermfgs = [ '166', 'red', 'magenta', 'blue' ]
 
 if !exists('g:rainbow_conf')
