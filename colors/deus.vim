@@ -2,11 +2,11 @@
 " File: deus.vim
 " Description: a retro-modern colorscheme in Vim
 " Author: ajmwagar
-" Source: https://github.com/ajmwagar/deus
-" Last Modified: 04 Sep 2015
+" Source: https://github.com/ajmwagar/vim-deus
+" Last Modified: 21 June 2019
 " -----------------------------------------------------------------------------
 
-" Supporting code -------------------------------------------------------------
+" Setup Colors/Palette {{{
 " Initialisation: {{{
 
 if version > 580
@@ -65,10 +65,6 @@ if !exists('g:deus_invert_indent_guides')
   let g:deus_invert_indent_guides=0
 endif
 
-if exists('g:deus_contrast')
-  echo 'g:deus_contrast is deprecated; use g:deus_contrast_light and g:deus_contrast_dark instead'
-endif
-
 if !exists('g:deus_contrast_dark')
   let g:deus_contrast_dark='medium'
 endif
@@ -85,10 +81,9 @@ let s:is_dark=(&background == 'dark')
 " setup palette dictionary
 let s:ds = {}
 
+
 " fill it with absolute colors
-let s:ds.dark0_hard  = ['#1c1c1c', 234]     " 29-32-33
 let s:ds.dark0       = ['#262626', 235]     " 40-40-40
-let s:ds.dark0_soft  = ['#303030', 236]     " 50-48-47
 let s:ds.dark1       = ['#3a3a3a', 237]     " 60-56-54
 let s:ds.dark2       = ['#4e4e4e', 239]     " 80-73-69
 let s:ds.dark3       = ['#626262', 241]     " 102-92-84
@@ -98,41 +93,20 @@ let s:ds.dark4_256   = ['#767676', 243]     " 124-111-100
 let s:ds.gray_245    = ['#8a8a8a', 245]     " 146-131-116
 let s:ds.gray_244    = ['#808080', 244]     " 146-131-116
 
-let s:ds.light0_hard = ['#ffffd7', 230]     " 249-245-215
 let s:ds.light0      = ['#ffffaf', 229]     " 253-244-193
-let s:ds.light0_soft = ['#ffff87', 228]     " 242-229-188
-"let s:ds.light0_hard  = ['#2C313A', 234]     " 29-32-33
-"let s:ds.light0       = ['#2C323B', 235]     " 40-40-40
-"let s:ds.light0_soft  = ['#28282f', 236]     " 50-48-47
 let s:ds.light1      = ['#ffd7af', 223]     " 235-219-178
 let s:ds.light2      = ['#bcbcbc', 250]     " 213-196-161
 let s:ds.light3      = ['#a8a8a8', 248]     " 189-174-147
 let s:ds.light4      = ['#949494', 246]     " 168-153-132
 let s:ds.light4_256  = ['#949494', 246]     " 168-153-132
 
-let s:ds.bright_red     = ['#d75f5f', 167]     " 251-73-52
-let s:ds.bright_green   = ['#afaf00', 142]     " 184-187-38
-let s:ds.bright_yellow  = ['#ffaf00', 214]     " 250-189-47
-let s:ds.bright_blue    = ['#87afaf', 109]     " 131-165-152
-let s:ds.bright_purple  = ['#d787af', 175]     " 211-134-155
-let s:ds.bright_aqua    = ['#87af87', 108]     " 142-192-124
-let s:ds.bright_orange  = ['#ff8700', 208]     " 254-128-25
-
-let s:ds.neutral_red    = ['#af0000', 124]     " 204-36-29
-let s:ds.neutral_green  = ['#87af00', 106]     " 152-151-26
-let s:ds.neutral_yellow = ['#d78700', 172]     " 215-153-33
-let s:ds.neutral_blue   = ['#5f8787', 66]      " 69-133-136
-let s:ds.neutral_purple = ['#af5f87', 132]     " 177-98-134
-let s:ds.neutral_aqua   = ['#5faf87', 72]      " 104-157-106
-let s:ds.neutral_orange = ['#d75f00', 166]     " 214-93-14
-
-let s:ds.faded_red      = ['#870000', 88]      " 157-0-6
-let s:ds.faded_green    = ['#878700', 100]     " 121-116-14
-let s:ds.faded_yellow   = ['#af8700', 136]     " 181-118-20
-let s:ds.faded_blue     = ['#005f87', 24]      " 7-102-120
-let s:ds.faded_purple   = ['#875f87', 96]      " 143-63-113
-let s:ds.faded_aqua     = ['#5f8787', 66]      " 66-123-88
-let s:ds.faded_orange   = ['#af5f00', 130]     " 175-58-3
+let s:ds.bright_red    = ['#af0000', 124]     " 204-36-29
+let s:ds.bright_green  = ['#87af00', 106]     " 152-151-26
+let s:ds.bright_yellow = ['#d78700', 172]     " 215-153-33
+let s:ds.bright_blue   = ['#5f8787', 66]      " 69-133-136
+let s:ds.bright_purple = ['#af5f87', 132]     " 177-98-134
+let s:ds.bright_aqua   = ['#5faf87', 72]      " 104-157-106
+let s:ds.bright_orange = ['#d75f00', 166]     " 214-93-14
 " }}}
 " Setup Emphasis: {{{
 
@@ -169,14 +143,7 @@ let s:vim_fg = ['fg', 'fg']
 let s:none = ['NONE', 'NONE']
 
 " determine relative colors
-if s:is_dark
   let s:bg0  = s:ds.dark0
-  if g:deus_contrast_dark == 'soft'
-    let s:bg0  = s:ds.dark0_soft
-  elseif g:deus_contrast_dark == 'hard'
-    let s:bg0  = s:ds.dark0_hard
-  endif
-
   let s:bg1  = s:ds.dark1
   let s:bg2  = s:ds.dark2
   let s:bg3  = s:ds.dark3
@@ -199,37 +166,6 @@ if s:is_dark
   let s:purple = s:ds.bright_purple
   let s:aqua   = s:ds.bright_aqua
   let s:orange = s:ds.bright_orange
-else
-  let s:bg0  = s:ds.light0
-  if g:deus_contrast_light == 'soft'
-    let s:bg0  = s:ds.light0_soft
-  elseif g:deus_contrast_light == 'hard'
-    let s:bg0  = s:ds.light0_hard
-  endif
-
-  let s:bg1  = s:ds.light1
-  let s:bg2  = s:ds.light2
-  let s:bg3  = s:ds.light3
-  let s:bg4  = s:ds.light4
-
-  let s:gray = s:ds.gray_244
-
-  let s:fg0 = s:ds.dark0
-  let s:fg1 = s:ds.dark1
-  let s:fg2 = s:ds.dark2
-  let s:fg3 = s:ds.dark3
-  let s:fg4 = s:ds.dark4
-
-  let s:fg4_256 = s:ds.dark4_256
-
-  let s:red    = s:ds.bright_red
-  let s:green  = s:ds.bright_green
-  let s:yellow = s:ds.bright_yellow
-  let s:blue   = s:ds.bright_blue
-  let s:purple = s:ds.bright_purple
-  let s:aqua   = s:ds.bright_aqua
-  let s:orange = s:ds.bright_orange
-endif
 
 " reset to 16 colors fallback
 "if g:deus_termcolors == 16
@@ -271,7 +207,6 @@ let s:ds.aqua   = s:aqua
 let s:ds.orange = s:orange
 
 " }}}
-
 " Overload Setting: {{{
 
 let s:hls_cursor = s:orange
@@ -280,7 +215,7 @@ if exists('g:deus_hls_cursor')
 endif
 
 let s:number_column = s:bg4
-let s:sign_column = s:bg1
+let s:sign_column = s:bg2
 
 if exists('g:gitgutter_override_sign_column_highlight') &&
       \ g:gitgutter_override_sign_column_highlight == 1
@@ -426,8 +361,8 @@ call s:HL('deusPurpleSign', s:purple, s:sign_column, s:invert_signs)
 call s:HL('deusAquaSign', s:aqua, s:sign_column, s:invert_signs)
 
 " }}}
-
-" Vanilla colorscheme ---------------------------------------------------------
+" }}}
+" Vanilla colorscheme {{{
 " General UI: {{{
 
 " Normal text
@@ -444,7 +379,7 @@ endif
 
 if version >= 700
   " Screen line that the cursor is
-  call s:HL('CursorLine',   s:none, s:bg1)
+  call s:HL('CursorLine',   s:none, s:bg2)
   " Screen column that the cursor is
   hi! link CursorColumn CursorLine
 
@@ -452,6 +387,7 @@ if version >= 700
   call s:HL('TabLineFill', s:bg4, s:vim_bg, s:invert_tabline)
   " Active tab page label
   call s:HL('TabLineSel', s:vim_bg, s:bg4, s:bold . s:invert_tabline)
+
   " Not active tab page label
   hi! link TabLine TabLineFill
 
@@ -467,11 +403,13 @@ if version >= 703
   call s:HL('Conceal', s:blue, s:none)
 
   " Line number of CursorLine
-  call s:HL('CursorLineNr', s:yellow, s:bg1)
+  call s:HL('CursorLineNr', s:fg1, s:bg2)
 endif
 
-hi! link NonText deusBg2
-hi! link SpecialKey deusBg2
+" Weird black color breaks 
+hi! link NonText deusGreen 
+hi! link Ignore deusPurple 
+hi! link SpecialKey deusOrange
 
 call s:HL('Visual',    s:none,  s:bg3, s:invert_selection)
 hi! link VisualNOS Visual
@@ -481,8 +419,8 @@ call s:HL('IncSearch', s:bg0, s:hls_cursor)
 
 call s:HL('Underlined', s:blue, s:none, s:underline)
 
-call s:HL('StatusLine',   s:bg4, s:bg0, s:bold . s:inverse)
-call s:HL('StatusLineNC', s:bg2, s:fg4, s:bold . s:inverse)
+call s:HL('StatusLine',   s:bg2, s:fg1, s:bold . s:inverse)
+call s:HL('StatusLineNC', s:bg2, s:fg1, s:bold . s:inverse)
 
 " The column separating vertically split windows
 call s:HL('VertSplit', s:fg4, s:vert_split)
@@ -497,7 +435,7 @@ hi! link Directory deusGreenBold
 hi! link Title deusGreenBold
 
 " Error messages on the command line
-call s:HL('ErrorMsg',   s:vim_bg, s:red, s:bold)
+call s:HL('ErrorMsg',   s:red, s:bg1, s:bold)
 " More prompt: -- More --
 hi! link MoreMsg deusYellowBold
 " Current mode message: -- INSERT --
@@ -517,15 +455,15 @@ call s:HL('LineNr', s:number_column)
 call s:HL('SignColumn', s:none, s:sign_column)
 
 " Line used for closed folds
-call s:HL('Folded', s:gray, s:bg1, s:italic)
+call s:HL('Folded', s:gray, s:bg2, s:italic)
 " Column where folds are displayed
-call s:HL('FoldColumn', s:gray, s:bg1)
+call s:HL('FoldColumn', s:gray, s:bg2)
 
 " }}}
 " Cursor: {{{
 
 " Character under cursor
-call s:HL('Cursor', s:none, s:none, s:inverse)
+"call s:HL('Cursor', s:none, s:none, s:inverse)
 " Visual mode cursor, selection
 hi! link vCursor Cursor
 " Input moder cursor
@@ -545,6 +483,7 @@ endif
 call s:HL('Comment', s:gray, s:none, s:italicize_comments)
 call s:HL('Todo', s:vim_fg, s:vim_bg, s:bold . s:italic)
 call s:HL('Error', s:red, s:vim_bg, s:bold . s:inverse)
+"call s:HL("Error", { "fg": s:red, "bg": s:vim_bg }) " any erroneous construct
 
 " Generic statement
 hi! link Statement deusRed
@@ -648,8 +587,18 @@ if has("spell")
 endif
 
 " }}}
+" }}}
+" Plugin specific {{{
+" Cocnvim: {{{
+" Symbols
+highlight link CocErrorSign deusRedSign
+highlight link CocWarningSign deusYellowSign
+highlight link CocInfoSign deusAquaSign
+highlight link CocHintSign deusGreenSign
 
-" Plugin specific -------------------------------------------------------------
+" Text highlights
+call s:HL('CocHighlightText', s:fg1, s:bg2)
+"}}}
 " EasyMotion: {{{
 
 hi! link EasyMotionTarget Search
@@ -737,6 +686,9 @@ hi! link gitcommitDiscardedFile deusRed
 hi! link SignifySignAdd deusGreenSign
 hi! link SignifySignChange deusAquaSign
 hi! link SignifySignDelete deusRedSign
+" hi! SignifySignAdd guibg=#242a32 guifg=#99c379
+" hi! SignifySignDelete guibg=#242a32 guifg=#fb4733
+" hi! SignifySignChange guibg=#242a32 guifg=#8ec07b
 
 " }}}
 " Syntastic: {{{
@@ -746,6 +698,8 @@ call s:HL('SyntasticWarning', s:none, s:none, s:undercurl, s:yellow)
 
 hi! link SyntasticErrorSign deusRedSign
 hi! link SyntasticWarningSign deusYellowSign
+hi! link AleWarningSign deusYellowSign
+hi! link AleErrorSign deusRedSign
 
 " }}}
 " Signature: {{{
@@ -774,6 +728,24 @@ call s:HL('CtrlPMode2', s:bg0, s:blue, s:bold)
 call s:HL('CtrlPStats', s:fg4, s:bg2, s:bold)
 
 " }}}
+" FZF: {{{
+let g:fzf_colors =
+      \ {
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
+
+call s:HL('NormalFloat', s:fg1, s:bg2)
+"
+" }}}
 " Startify: {{{
 
 hi! link StartifyBracket deusFg3
@@ -799,14 +771,24 @@ let g:vimshell_escape_colors = [
 " }}}
 " BufTabLine: {{{
 
-call s:HL('BufTabLineCurrent', s:bg0, s:fg4)
+call s:HL('BufTabLineCurrent', s:bg0, s:green)
 call s:HL('BufTabLineActive', s:fg4, s:bg2)
-call s:HL('BufTabLineHidden', s:bg4, s:bg1)
-call s:HL('BufTabLineFill', s:bg0, s:bg0)
+call s:HL('BufTabLineHidden', s:fg1, s:bg2)
+call s:HL('BufTabLineFill', s:bg0, s:bg2)
+
+hi StatusLine ctermbg=10 ctermfg=10 cterm=bold guibg=NONE guifg=NONE gui=NONE
+hi StatusLineNC ctermbg=10 ctermfg=10 cterm=NONE guibg=NONE guifg=NONE gui=NONE
 
 " }}}
+" Netrw: {{{
 
-" Filetype specific -----------------------------------------------------------
+hi! link netrwDir deusGreen
+hi! link netrwClassify deusBlue
+hi! link netrwTreeBar deusRed
+hi! link netrwPlain deusFg1
+
+" }}}
+" Language syntax {{{
 " Diff: {{{
 
 hi! link diffAdded deusGreen
@@ -918,6 +900,31 @@ hi! link cOperator deusPurple
 hi! link cStructure deusOrange
 
 " }}}
+" C++ {{{
+
+hi! link  NamespaceTag deusPurpleBold
+hi! link  NamespaceAliasTag deusPurpleBold
+hi! link  ClassTag duesOrange
+hi! link  StructureTag deusOrange
+hi! link  EnumTag deusAqua
+hi! link  EnumValueTag deusAqua
+hi! link  UnionTag deusPurple
+hi! link  FieldTag deusPurple
+hi! link  LocalVariableTag deusOrange
+hi! link  FunctionTag deusGreen 
+hi! link  MethodTag deusGreen
+hi! link  FunctionParameterTag deusPurpleBold 
+hi! link  TemplateTypeParameterTag deusPurple
+hi! link  TemplateNonTypeParameterTag deusRedBold
+hi! link  TemplateTemplateParameterTag deusRed
+hi! link  MacroDefinitionTag deusBlue
+hi! link  MacroInstantiationTag deusBlue
+hi! link  TypedefTag deusPurple
+hi! link  UsingDirectiveTag deusOrange
+hi! link  UsingDeclarationTag deusOrange
+
+
+" }}}
 " Python: {{{
 
 hi! link pythonBuiltin deusOrange
@@ -1007,8 +1014,10 @@ hi! link javascriptClassSuper deusOrange
 
 " hi! link javascriptFuncKeyword deusOrange
 " hi! link javascriptAsyncFunc deusOrange
+hi! link javascriptFuncName deusFg1
 hi! link javascriptFuncKeyword deusAqua
-hi! link javascriptAsyncFunc deusAqua
+hi! link javascriptAwaitFuncKeyword deusRed
+hi! link javascriptAsyncFuncKeyword deusBlue
 hi! link javascriptClassStatic deusOrange
 
 hi! link javascriptOperator deusRed
@@ -1028,7 +1037,7 @@ hi! link javascriptObjectLabel deusFg1
 hi! link javascriptPropertyName deusFg1
 
 hi! link javascriptLogicSymbols deusFg1
-hi! link javascriptArrowFunc deusFg1
+hi! link javascriptArrowFunc deusYellow
 
 hi! link javascriptDocParamName deusFg4
 hi! link javascriptDocTags deusFg4
@@ -1036,6 +1045,16 @@ hi! link javascriptDocNotation deusFg4
 hi! link javascriptDocParamType deusFg4
 hi! link javascriptDocNamedParamType deusFg4
 
+" }}}
+" jsx-pretty: {{{
+hi! link jsxTagName deusBlue
+hi! link jsxComponentName jsxTagName
+hi! link jsxOpenPunct deusGray
+hi! link jsxBraces jsxTagName
+hi! link jsxCloseString jsxOpenPunct
+hi! link jsxEqual jsxTagName
+hi! link jsxString javascriptString
+hi! link jsxAttrib jsxString
 " }}}
 " CoffeeScript: {{{
 
@@ -1143,7 +1162,7 @@ hi! link markdownCodeBlock deusAqua
 hi! link markdownCodeDelimiter deusAqua
 
 hi! link markdownBlockquote deusGray
-hi! link markdownListMarker deusGray
+hi! link markdownListMarker deusPurple
 hi! link markdownOrderedListMarker deusGray
 hi! link markdownRule deusGray
 hi! link markdownHeadingRule deusGray
@@ -1202,9 +1221,8 @@ hi! link jsonBraces deusFg1
 hi! link jsonString deusFg1
 
 " }}}
-
-
-" Functions -------------------------------------------------------------------
+" }}}
+" Utility Functions {{{
 " Search Highlighting Cursor {{{
 
 function! DeusHlsShowCursor()
@@ -1215,6 +1233,7 @@ function! DeusHlsHideCursor()
   call s:HL('Cursor', s:none, s:none, s:inverse)
 endfunction
 
+" }}}
 " }}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
