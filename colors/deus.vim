@@ -100,13 +100,13 @@ let s:ds.light3      = ['#a8a8a8', 248]     " 189-174-147
 let s:ds.light4      = ['#949494', 246]     " 168-153-132
 let s:ds.light4_256  = ['#949494', 246]     " 168-153-132
 
-let s:ds.bright_red    = ['#af0000', 124]     " 204-36-29
-let s:ds.bright_green  = ['#87af00', 106]     " 152-151-26
-let s:ds.bright_yellow = ['#d78700', 172]     " 215-153-33
-let s:ds.bright_blue   = ['#5f8787', 66]      " 69-133-136
-let s:ds.bright_purple = ['#af5f87', 132]     " 177-98-134
-let s:ds.bright_aqua   = ['#5faf87', 72]      " 104-157-106
-let s:ds.bright_orange = ['#d75f00', 166]     " 214-93-14
+let s:ds.bright_red    = ['#d75f5f', 167]     " 204-36-29
+let s:ds.bright_green  = ['#afaf00', 142]     " 152-151-26
+let s:ds.bright_yellow = ['#ffaf00', 214]     " 215-153-33
+let s:ds.bright_blue   = ['#87afaf', 109]      " 69-133-136
+let s:ds.bright_purple = ['#d787af', 175]     " 177-98-134
+let s:ds.bright_aqua   = ['#87af87', 108]      " 104-157-106
+let s:ds.bright_orange = ['#ff8700', 208]     " 214-93-14
 " }}}
 " Setup Emphasis: {{{
 
