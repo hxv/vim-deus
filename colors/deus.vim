@@ -407,7 +407,7 @@ if version >= 703
 endif
 
 " Weird black color breaks 
-hi! link NonText deusGreen 
+hi! link NonText deusAqua 
 hi! link Ignore deusPurple 
 hi! link SpecialKey deusOrange
 
@@ -1219,6 +1219,12 @@ hi! link jsonKeyword deusGreen
 hi! link jsonQuote deusGreen
 hi! link jsonBraces deusFg1
 hi! link jsonString deusFg1
+
+" }}}
+" PHP: {{{
+
+:hi! link phpKeyword deusRed
+:hi! link Delimiter deusOrange
 
 " }}}
 " }}}
